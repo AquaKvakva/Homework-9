@@ -69,18 +69,5 @@ public class Radio {
             setCurrentVolume(currentVolume);
         }
     }
-
-
-//    public void setToMaxStation() {
-//        currentStation = 9;
-//    }
-//    public void SetToMaxVolume() {
-//        currentVolume = 100;
-//    }
-//
-//    public void SetToMinVolume() {
-//        currentVolume = 0;
-//    }
-
 }
 
