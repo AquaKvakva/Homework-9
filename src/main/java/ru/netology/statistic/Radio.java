@@ -10,24 +10,31 @@ public class Radio {
 
     public void setCurrentStation(int newCurrentStation) {
         if (newCurrentStation < 0) {
-            currentStation = 9;
             return;
         }
         if (newCurrentStation > 9) {
-            currentStation = 0;
             return;
         }
         currentStation = newCurrentStation;
     }
 
-    public void next(int currentStation) {
-        int target = currentStation + 1;
-        setCurrentStation(target);
+    public void next() {
+        if (currentStation != 9) {
+            currentStation++;
+        }
+        else  {
+            currentStation = 0;
+        }
+        setCurrentStation(currentStation);
     }
 
-    public void prev(int currentStation) {
-        int target = currentStation - 1;
-        setCurrentStation(target);
+    public void prev() {
+        if (currentStation != 0) {
+            currentStation--;
+        }else {
+            currentStation = 9;
+        }
+        setCurrentStation(currentStation);
     }
 
     public void setNumberOfStation(int currentStation) {
@@ -49,25 +56,18 @@ public class Radio {
         currentVolume = newCurrentVolume;
     }
 
-    public void setToSoundLouder(int currentVolume) {
-        if (currentVolume <= 100) {
+    public void setToSoundLouder() {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
-            setCurrentVolume(currentVolume);
-
         }
-        if (currentVolume > 100) {
-            setCurrentVolume(currentVolume);
-        }
+        setCurrentVolume(currentVolume);
     }
 
-    public void setToSoundQuiet(int currentVolume) {
-        if (currentVolume >= 0) {
+    public void setToSoundQuiet() {
+        if (currentVolume > 0) {
             currentVolume = currentVolume - 1;
-            setCurrentVolume(currentVolume);
         }
-        if (currentVolume < 0) {
-            setCurrentVolume(currentVolume);
-        }
+        setCurrentVolume(currentVolume);
     }
 }
 
