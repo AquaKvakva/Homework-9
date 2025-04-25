@@ -1,37 +1,49 @@
 package ru.netology.statistic;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Radio {
     private int currentStation;
     private int currentVolume;
+    private int maxStation = 10;
+    private int minStation;
+    private int maxVolume = 101;
+    private int minVolume;
 
-    public int getCurrentStation() {
-        return currentStation;
+    public Radio(int stationsCount) {
+        this.maxStation = stationsCount - 1;
+        this.maxVolume = stationsCount - 1;
     }
 
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0) {
+        if (newCurrentStation < minStation) {
             return;
         }
-        if (newCurrentStation > 9) {
+        if (newCurrentStation > maxStation) {
             return;
         }
         currentStation = newCurrentStation;
     }
 
     public void next() {
-        if (currentStation != 9) {
+        if (currentStation != maxStation) {
             currentStation++;
         } else {
-            currentStation = 0;
+            currentStation = minStation;
         }
         setCurrentStation(currentStation);
     }
 
     public void prev() {
-        if (currentStation != 0) {
+        if (currentStation != minStation) {
             currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = maxStation;
         }
         setCurrentStation(currentStation);
     }
@@ -40,33 +52,30 @@ public class Radio {
         setCurrentStation(currentStation);
     }
 
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 100) {
-            currentVolume = 100;
+        if (newCurrentVolume > maxVolume) {
+            currentVolume = maxVolume;
             return;
         }
         currentVolume = newCurrentVolume;
     }
 
     public void setToSoundLouder() {
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
         setCurrentVolume(currentVolume);
     }
 
     public void setToSoundQuiet() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
         setCurrentVolume(currentVolume);
     }
+
 }
 
