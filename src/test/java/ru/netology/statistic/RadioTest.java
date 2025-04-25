@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
+
     @Test
     public void shouldTestStation() {
         Radio rad = new Radio(10);
@@ -272,7 +273,6 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
-
 
 
 }
